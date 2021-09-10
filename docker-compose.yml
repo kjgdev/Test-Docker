@@ -1,0 +1,16 @@
+version: '3'
+services:
+  node-service: 
+    build: ./NodeJS
+    volumes:
+      - ./NodeJS:/usr/src/app
+    ports:
+      - 3000:1000
+  website:
+    image: nginx:alpine
+    volumes:
+      - ./Web:/usr/share/nginx/html
+    ports:
+      - 3001:80
+    depends_on: 
+      - node-service
